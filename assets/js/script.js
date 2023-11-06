@@ -1,11 +1,37 @@
 var quizQuestions = [{question: "Inside which HTML element do we put the JavaScript?", choices: ["<script>", "<javascript>", "<js>"]},
 {question:"How do you create a function in JavaScript?", choices: ["function myFunction()", "function: myFunction()", "function = myFunction"]}, 
-{question: "Which one is not a primitive data type?", choices: ["array", "number", "undefined"]}, {question: "Which one is not a loop?", choices: ["if", "for", "while"]},
-{question: "Which operator is used to assign a value to a variable?", choices: ["=", "*","-"]}, {question: "How can you add a comment in a JavaScript?", choices: ["//This is a comment", "'This is a comment", "<!--This is a comment-->"]}, {question: "Which popup box allows the user to input a value?", choices: ["prompt", "alert", "confirm"]}
+{question: "Which of the following is not a primitive data type?", choices: ["array", "number", "undefined"]},
+{question: "Which operator is used to assign a value to a variable?", choices: ["=", "*","-"]}, {question: "How can you add a comment in a JavaScript?", choices: ["//This is a comment", "'This is a comment", "<!--This is a comment-->"]}, {question: "Which of the following is not a loop?", choices: ["if", "for", "while"]}, {question: "Which popup box allows the user to input a value?", choices: ["prompt", "alert", "confirm"]}
 ];
 
+var startButton = document.getElementById("start")
+var timer = document.getElementById("time");
+var startScreen = document.getElementById("start-screen")
 
 //configure timer for 100 sec
+
+
+var secondsLeft = 100;
+
+function setTime() {
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timer.textContent = secondsLeft;
+
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+      showFeedback();
+    }
+
+  }, 1000);
+}
+
+
+startButton.addEventListener("click", function() {
+    startScreen.innerHTML = "";
+    setTime();
+
+})
 
 //configure function that places each quesiton and answer where they should be on the page + which answer is correct and shuffle answers
 
