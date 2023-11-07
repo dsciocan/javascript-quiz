@@ -1,7 +1,7 @@
-var quizQuestions = [{question: "Inside which HTML element do we put the JavaScript?", choices: ["<script>", "<javascript>", "<js>"]},
-{question:"How do you create a function in JavaScript?", choices: ["function myFunction()", "function: myFunction()", "function = myFunction"]}, 
-{question: "Which of the following is not a primitive data type?", choices: ["array", "number", "undefined"]},
-{question: "Which operator is used to assign a value to a variable?", choices: ["=", "*","-"]}, {question: "How can you add a comment in a JavaScript?", choices: ["//This is a comment", "'This is a comment", "<!--This is a comment-->"]}, {question: "Which of the following is not a loop?", choices: ["if", "for", "while"]}, {question: "Which popup box allows the user to input a value?", choices: ["prompt", "alert", "confirm"]}
+var quizQuestions = [{question: "Inside which HTML element do we put the JavaScript?", choices: [ "<javascript>", "<script>", "<js>"], answer: "<script>"},
+{question:"How do you create a function in JavaScript?", choices: ["function myFunction()", "function: myFunction()", "function = myFunction"], answer: "function myFunction()"}, 
+{question: "Which of the following is not a primitive data type?", choices: ["number", "array", "undefined"], answer:"array"},
+{question: "Which operator is used to assign a value to a variable?", choices: ["*","-", "="], answer: "="}, {question: "How can you add a comment in a JavaScript file?", choices: ["//This is a comment", "'This is a comment", "<!--This is a comment-->"], answer: "//This is a comment"}, {question: "Which of the following is not a loop?", choices: ["if", "for", "while"], answer: "if"}, {question: "Which popup box allows the user to input a value?", choices: ["alert", "confirm", "prompt"], answer: "prompt"}
 ];
 
 var startButton = document.getElementById("start");
@@ -25,10 +25,10 @@ function setTime() {
 
     if(secondsLeft <= 0) {
       clearInterval(timerInterval);
-      questionScreen.setAttribute("class", "hide");
-      endScreen.setAttribute("class", "show");
+      timer.textContent = "0";
+      questionScreen.classList.add("hide");
+      endScreen.classList.remove("hide");
     }
-
   }, 1000);
 }
 
@@ -43,38 +43,30 @@ questionChoices.appendChild(choice2);
 questionChoices.appendChild(choice3);
 questionScreen.appendChild(outcome);
 
+
 //configure function that places each quesiton and answer where they should be on the page + which answer is correct and shuffle answers
-var correctAnswer;
+var number = 0;
 
 function questions(number) {
-    questionTitle.textContent = quizQuestions[number].question;
-    correctAnswer = quizQuestions[number].choices[0];
+    var questionName = quizQuestions[number].question;
+    questionTitle.textContent = questionName;
     var choice = quizQuestions[number].choices;
-    function shuffle(array) {
-        for (var i = (array.length - 1); i > 0;  i--) {
-          var j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
-        }
-      };
-    shuffle(choice);
+    var correctAnswer = quizQuestions[number].answer;
     choice1.textContent = choice[0];
     choice2.textContent = choice[1];
     choice3.textContent = choice[2];
     [choice1, choice2, choice3].forEach(function(element) {
         element.addEventListener("click", function(event) {
-            if(event == correctAnswer) {
-                secondsLeft += 10;
-                outcome.textContent = "Correct Answer";
-    
-            } else {
+            if (event.target.textContent != correctAnswer) {
                 secondsLeft -= 10;
                 outcome.textContent = "Wrong Answer";
+                questions(number+1);
+            } else {
+                outcome.textContent = "Correct Answer";
+                questions(number+1);
             }
-            questions(number+1);
+
         })
-        if (number >= quizQuestions.length) {
-            return;
-        }
     })
 }
 
@@ -85,11 +77,14 @@ function questions(number) {
 //click event that makes first question & timer appear on button click
 
 startButton.addEventListener("click", function() {
-    startScreen.innerHTML = "";
+    startScreen.classList.add("hide");
+    questionScreen.classList.remove("hide");
     setTime();
-    questionScreen.setAttribute("class", "show");
-    questions(0);
+    for (var i=0;i<quizQuestions.length;i++) {
+        questions(i);
+    }
 })
+
 
 // Questions contain buttons for each answer.
 //HTML button creation for each answer, and make the content change based on question
