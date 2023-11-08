@@ -103,22 +103,27 @@ startButton.addEventListener("click", function() {
 
 
 
-// When the game ends, it should display their score and give the user the ability to save their initials and their score
-//end screen is time left as score + input field for name which, if submitted, data will be stored locally
-
+// User initial input and score saving
 var input = document.getElementById("initials");
 var submitButton = document.getElementById("submit")
 var submitMessage = document.createElement("p");
 endScreen.appendChild(submitMessage);
 
+var latestScore = [];
+
 submit.addEventListener("click", function() {
-    console.log(input.textContent);
     if(input.value.length != 0) {
-    localStorage.setItem("Initials", input);
-    localStorage.setItem("Score", secondsLeft);
-    input.textContent = ""
-    submitMessage.textContent = "Your score has been saved."
+        latestScore = JSON.parse(localStorage.getItem("Score"));
+        var scoreEntry = {
+            initials: input.value,
+            score: secondsLeft
+        }
+            latestScore.push(scoreEntry);
+            localStorage.setItem("Score", JSON.stringify(latestScore));
+        console.log(latestScore);
+    input.value = "";
+    submitMessage.textContent = "Your score has been saved.";
     } else {
-    submitMessage.textContent = "Please enter your initials."
+    submitMessage.textContent = "Please enter your initials.";
     }
-})
+}) 
