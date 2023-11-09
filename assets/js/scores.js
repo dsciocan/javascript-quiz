@@ -1,6 +1,6 @@
 var highScores = document.getElementById("highscores");
 
-//Get scores from local storage, sort them in descending order if multiple, and display them
+//Get scores from local storage, sort them in descending order if more than one, and display them
 var addScore = [];
 addScore = JSON.parse(localStorage.getItem("Score"));
 if (addScore.length >= 2) {

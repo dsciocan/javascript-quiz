@@ -10,7 +10,7 @@ var quizQuestions = [
 {question: "Which popup box allows the user to input a value?", choices: ["alert", "confirm", "prompt"], answer: "prompt"}
 ];
 
-//Assigning elements to variables
+//Assign elements to variables
 
 var startButton = document.getElementById("start");
 var time = document.getElementById("time");
@@ -95,7 +95,7 @@ function questions() {
 
 }
 
-//click event that makes first question & timer appear on button click
+//Click event that makes first question & timer appear on button click
 
 startButton.addEventListener("click", function() {
     startScreen.classList.add("hide");
@@ -107,7 +107,7 @@ startButton.addEventListener("click", function() {
 
 
 
-// User initial input and score saving
+//User initial input and score saving
 var input = document.getElementById("initials");
 var submitButton = document.getElementById("submit")
 var submitMessage = document.createElement("p");
@@ -122,7 +122,6 @@ submit.addEventListener("click", function() {
         };
         latestScore.push(scoreEntry);
         localStorage.setItem("Score", JSON.stringify(latestScore));
-        console.log(latestScore);
     input.value = "";
     submitMessage.textContent = "Your score has been saved.";
     } else {
