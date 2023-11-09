@@ -43,7 +43,7 @@ function setTime() {
       questionScreen.classList.add("hide");
       timer.classList.add("hide");
       endScreen.classList.remove("hide");
-      finalScore.textContent = secondsLeft;
+      finalScore.textContent = 0;
     } else if (index == quizQuestions.length) {
         questionScreen.classList.add("hide");
         endScreen.classList.remove("hide");
@@ -129,3 +129,9 @@ submit.addEventListener("click", function() {
     submitMessage.textContent = "Please enter your initials.";
     }
 }) 
+
+
+var backButton = document.getElementById("back");
+backButton.addEventListener("click", function() {
+    location.reload();
+})

@@ -27,6 +27,8 @@ Pressing any of the buttons will display a text indicating whether the answer wa
 
 Once the timer reaches 0 or all questions have been answered, the user is shown a page where they can view their score and save it locally by typing their initials in the input field and then pressing submit. The score then gets saved to the "View Highscores" page, where saved scores are sorted from lowest to highest. Pressing the "Clear Highscores" will erase all saved scores. 
 
+The user can retry the quiz by pressing the "Try Again" button.
+
 ## Credits
 Starter code from [Boot Camp Gitlab](https://git.bootcampcontent.com/uk-edx-16-week/UK-VIRT-FE-PT-09-2023-U-LOLC).
 
