@@ -133,5 +133,5 @@ submit.addEventListener("click", function() {
 
 var backButton = document.getElementById("back");
 backButton.addEventListener("click", function() {
-    location.reload();
+    window.location.href = window.location.href;
 })
