@@ -1,9 +1,13 @@
 //Question object array
 
-var quizQuestions = [{question: "Inside which HTML element do we put the JavaScript?", choices: [ "<javascript>", "<script>", "<js>"], answer: "<script>"},
+var quizQuestions = [
+{question: "Inside which HTML element do we put the JavaScript?", choices: [ "<javascript>", "<script>", "<js>"], answer: "<script>"},
 {question:"How do you create a function in JavaScript?", choices: ["function myFunction()", "function: myFunction()", "function = myFunction"], answer: "function myFunction()"}, 
 {question: "Which of the following is not a primitive data type?", choices: ["number", "array", "undefined"], answer:"array"},
-{question: "Which operator is used to assign a value to a variable?", choices: ["*","-", "="], answer: "="}, {question: "How can you add a comment in a JavaScript file?", choices: ["//This is a comment", "'This is a comment", "<!--This is a comment-->"], answer: "//This is a comment"}, {question: "Which of the following is not a loop?", choices: ["if", "for", "while"], answer: "if"}, {question: "Which popup box allows the user to input a value?", choices: ["alert", "confirm", "prompt"], answer: "prompt"}
+{question: "Which operator is used to assign a value to a variable?", choices: ["*","-", "="], answer: "="}, 
+{question: "How can you add a comment in a JavaScript file?", choices: ["//This is a comment", "'This is a comment", "<!--This is a comment-->"], answer: "//This is a comment"}, 
+{question: "Which of the following is not a loop?", choices: ["if", "for", "while"], answer: "if"}, 
+{question: "Which popup box allows the user to input a value?", choices: ["alert", "confirm", "prompt"], answer: "prompt"}
 ];
 
 //Assigning elements to variables
@@ -109,17 +113,15 @@ var submitButton = document.getElementById("submit")
 var submitMessage = document.createElement("p");
 endScreen.appendChild(submitMessage);
 
-var latestScore = [];
-
 submit.addEventListener("click", function() {
     if(input.value.length != 0) {
-        latestScore = JSON.parse(localStorage.getItem("Score"));
+        latestScore = JSON.parse(localStorage.getItem("Score")) || [];
         var scoreEntry = {
             initials: input.value,
             score: secondsLeft
-        }
-            latestScore.push(scoreEntry);
-            localStorage.setItem("Score", JSON.stringify(latestScore));
+        };
+        latestScore.push(scoreEntry);
+        localStorage.setItem("Score", JSON.stringify(latestScore));
         console.log(latestScore);
     input.value = "";
     submitMessage.textContent = "Your score has been saved.";
