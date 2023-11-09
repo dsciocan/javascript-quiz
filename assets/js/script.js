@@ -43,6 +43,7 @@ function setTime() {
       questionScreen.classList.add("hide");
       timer.classList.add("hide");
       endScreen.classList.remove("hide");
+      finalScore.textContent = secondsLeft;
     } else if (index == quizQuestions.length) {
         questionScreen.classList.add("hide");
         endScreen.classList.remove("hide");
